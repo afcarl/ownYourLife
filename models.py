@@ -22,7 +22,7 @@ class Entry(models.Model):
     """ Each time stamped log entry """
     timestamp = models.DateTimeField('date published')
     cat = models.ForeignKey(Category)
-    value = models.FloatField(blank=True)
+    value = models.FloatField(blank=True, null=True)
     note = models.TextField(blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
 

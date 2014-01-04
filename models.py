@@ -12,7 +12,7 @@ class Category(models.Model):
     """ Hierarchical categories """
     name = models.CharField(max_length=255)
     details = models.TextField()
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return self.name
@@ -21,9 +21,9 @@ class Entry(models.Model):
     """ Each time stamped log entry """
     timestamp = models.DateTimeField('date published')
     cat = models.ForeignKey(Category)
-    value = models.FloatField(default=0)
-    note = models.TextField()
-    tags = models.ManyToManyField(Tag)
+    value = models.FloatField(blank=True)
+    note = models.TextField(blank=True)
+    tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return '[' + str(self.cat) + '] ' + str(self.value) + ' (' + str(self.timestamp) + ')'

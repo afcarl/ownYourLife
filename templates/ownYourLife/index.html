@@ -1,0 +1,9 @@
+{% if model %}
+    <ul>
+    {% for entry in model %}
+        <li><a href="{% url 'ownYourLife:entry-detail' entry.id %}">{{ entry }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No entries are available.</p>
+{% endif %}

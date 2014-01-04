@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from ownYourLife.models import Category, Entry
+
+admin.site.register(Entry)
+admin.site.register(Category)

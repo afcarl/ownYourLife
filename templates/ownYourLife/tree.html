@@ -1,0 +1,21 @@
+<h1>Tree of all categories</h1>
+{% if cats %}
+    <ul>
+    {% for cat in cats %}
+        <li>{{ cat }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No categorie exists.</p>
+{% endif %}
+
+{% if panels %}
+    {% for pname, plist in panels %}
+        <h3>{{ pname }}</h3>
+        <ul>
+        {% for cname, cat in plist %}
+            <li>{{ cname }}</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
+{% endif %}

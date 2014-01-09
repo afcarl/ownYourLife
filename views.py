@@ -47,7 +47,7 @@ def buildCategoryTree(l):
 
     return tree 
 
-def flattenCategoryTree(catTree, label='main', subIdx=0):
+def flattenCategoryTree(catTree, label='main', title='main', subIdx=0):
     """ 
     From the category tree, flatten it to generate panels of buttons
     suitable as a quick user interface
@@ -83,13 +83,13 @@ def flattenCategoryTree(catTree, label='main', subIdx=0):
         if type(catTree[key]) == dict:
             slabel = 'sub' + str(subIdx)
             subIdx += 1
-            innerPanels, subIdx = flattenCategoryTree(catTree[key], slabel, subIdx)
+            innerPanels, subIdx = flattenCategoryTree(catTree[key], key, slabel, subIdx)
             panels.extend(innerPanels)
-            currentLevel.append((key, slabel))
+            currentLevel.append((key, slabel, None))
         else:
-            currentLevel.append((key, catTree[key]))
+            currentLevel.append((key, None, catTree[key]))
 
-    panels.append((label, currentLevel))
+    panels.append((label, title, currentLevel))
 
     # returns
     #   1. panels that can be recursively extended

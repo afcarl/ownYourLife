@@ -15,3 +15,9 @@ Model
 
  * Category: string representing a hierarchical entry type
     * hierarchy promotes quick selection of entry type
+
+Installation
+============
+
+Configuration
+=============

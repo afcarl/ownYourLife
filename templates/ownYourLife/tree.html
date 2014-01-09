@@ -1,4 +1,46 @@
-<h1>Tree of all categories</h1>
+<head>
+    <style>
+        .choices {
+            margin: 10px auto;
+            border: 1px dotted;
+            display: block;
+            overflow: hidden;
+        }
+        .choices li {
+            float: left;
+            position: relative;
+            margin: 2px;
+            padding: 1px;
+            border: 1px solid #0F0;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+        .choices a {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 0;
+            top 0;
+            border: 1px solid #F00;
+        }
+        .choices span {
+            position: relative;
+            top: 30%;
+            left: 0;
+        }
+        a.sub {
+            background-color: #8BF;
+        }
+        a.detail {
+            background-color: #FA4;
+        }
+    </style>
+</head>
+{% comment %}
+{% load staticfiles %}
+{% static "ownYourLife/targ.html" %}<br/>
+<h1>Tree of all categories!</h1>
 {% if cats %}
     <ul>
     {% for cat in cats %}
@@ -8,14 +50,21 @@
 {% else %}
     <p>No categorie exists.</p>
 {% endif %}
+{% endcomment %}
 
 {% if panels %}
-    {% for pname, plist in panels %}
-        <h3>{{ pname }}</h3>
-        <ul>
-        {% for cname, cat in plist %}
-            <li>{{ cname }}</li>
+    {% for title, pname, plist in panels %}
+        <p>
+        <a class="anch" id="{{ pname }}"><h3>{{ title }}</h3></a>
+        <ul class="choices">
+        {% for cname, sub, cat in plist %}
+            {% if sub %}
+            <li><a class="sub" href="#{{ sub }}"><span>{{ cname }}</span></a></li>
+            {% else %}
+            <li><a class="detail" href="{% url 'ownYourLife:entry-detail' cat.pk %}"><span>{{ cname }}</span></a></li>
+            {% endif %}
         {% endfor %}
         </ul>
+        </p>
     {% endfor %}
 {% endif %}
